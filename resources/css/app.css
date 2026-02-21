@@ -1,0 +1,246 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500&display=swap');
+
+@theme {
+    --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ── Base ─────────────────────────────────────────── */
+body {
+    background-color: #F5F0E8;
+    font-family: 'DM Sans', sans-serif;
+    color: #1a1a1a;
+    min-height: 100vh;
+}
+
+@layer components {
+
+    .index-div {
+        padding: 64px 8%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .title-div {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1100px;
+        margin-bottom: 48px;
+        padding-bottom: 24px;
+        border-bottom: 1.5px solid #D4C9B0;
+    }
+
+    .index-heading {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: clamp(28px, 4vw, 48px);
+        font-weight: 700;
+        color: #1C1208;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+    }
+
+    .add-button {
+        background-color: #1C1208;
+        color: #F5F0E8;
+        width: 44px;
+        height: 44px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 22px;
+        font-weight: 300;
+        flex-shrink: 0;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+        box-shadow: 0 2px 8px rgba(28,18,8,0.18);
+    }
+
+    .add-button:hover {
+        background-color: #C17B3F;
+        transform: scale(1.08);
+    }
+
+    .add-button a {
+        color: inherit;
+        text-decoration: none;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .book-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        width: 100%;
+        max-width: 1100px;
+        gap: 24px;
+    }
+
+    .book-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 16px;
+        background-color: #FDFAF4;
+        padding: 28px 24px 20px;
+        border: 1px solid #E8DFCC;
+        box-shadow: 0 2px 6px rgba(28,18,8,0.07);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .book-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #C17B3F, #E8A96A);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    .book-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 28px rgba(28,18,8,0.12);
+    }
+
+    .book-item:hover::before {
+        opacity: 1;
+    }
+
+    .book-edit {
+        display: flex;
+        width: clamp(300px, 40%, 500px);
+        flex-direction: column;
+        border-radius: 16px;
+        background-color: #FDFAF4;
+        padding: 36px 32px;
+        border: 1px solid #E8DFCC;
+        box-shadow: 0 4px 16px rgba(28,18,8,0.09);
+    }
+
+    .title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 18px;
+        font-weight: 700;
+        color: #1C1208;
+        line-height: 1.3;
+        margin-bottom: 4px;
+    }
+
+    .year {
+        font-size: 12px;
+        font-weight: 500;
+        color: #9A8B72;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    .lower-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 16px;
+        padding-top: 16px;
+        border-top: 1px solid #EDE6D6;
+    }
+
+    .sub-title {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: #C17B3F;
+        background-color: #F5EBDA;
+        padding: 3px 9px;
+        border-radius: 100px;
+        width: fit-content;
+    }
+
+    .author {
+        font-size: 13px;
+        color: #6B5E4A;
+        font-style: italic;
+    }
+
+    .buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .edit-button,
+    .delete-button {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: opacity 0.15s ease, transform 0.15s ease;
+        letter-spacing: 0.02em;
+    }
+
+    .edit-button {
+        background-color: #1C1208;
+        color: #F5F0E8;
+    }
+
+    .delete-button {
+        background-color: transparent;
+        color: #B04030;
+        border: 1px solid #D9A49A;
+    }
+
+    .edit-button:hover,
+    .delete-button:hover {
+        opacity: 0.82;
+        transform: translateY(-1px);
+    }
+
+    .edit-button a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .input {
+        width: 100%;
+        border: 1px solid #D4C9B0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        background-color: #FDFAF4;
+        color: #1C1208;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .input:focus {
+        border-color: #C17B3F;
+        box-shadow: 0 0 0 3px rgba(193, 123, 63, 0.12);
+    }
+}

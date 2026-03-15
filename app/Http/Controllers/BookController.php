@@ -7,10 +7,17 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
-        return view('books.index', compact('books'));
+        $query = $request->input('search');
+
+        $books = Book::when($query, function ($q) use ($query) {
+            $q->where('title', 'like', "%{$query}%")
+              ->orWhere('author', 'like', "%{$query}%")
+              ->orWhere('genre', 'like', "%{$query}%");
+        })->get();
+
+        return view('books.index', compact('books', 'query'));
     }
 
     public function create()
@@ -25,13 +32,15 @@ class BookController extends Controller
             'author' => 'required',
             'genre' => 'required',
             'published_year' => 'required|integer',
+            'description' => 'required',
         ]);
 
         Book::create($request->only([
             'title',
             'author',
             'genre',
-            'published_year'
+            'published_year',
+            'description'
         ]));
 
         return redirect()->route('books.index')
@@ -55,6 +64,7 @@ class BookController extends Controller
             'author' => 'required',
             'genre' => 'required',
             'published_year' => 'required|integer',
+            'description' => 'required',
         ]);
 
         $book->update($request->all());

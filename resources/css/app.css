@@ -21,12 +21,26 @@ body {
 
 @layer components {
 
-    .index-div {
-        padding: 64px 8%;
+    .welcome-page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #F5F0E8;
+        min-height: 100vh;
+        text-align: center;
+    }
+
+    .index-div, .modify-div {
+        padding: 2% 8%;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    .modify-div{
+        justify-content: center;
     }
 
     .title-div {
@@ -49,6 +63,22 @@ body {
         color: #1C1208;
         letter-spacing: -0.5px;
         line-height: 1.1;
+    }
+
+    .sub-heading{
+        font-size: 14px;
+        font-weight: 500;
+        color: #C17B3F;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .welcome-text {
+        font-size: 16px;
+        color: #6B5E4A;
+        max-width: 500px;
+        margin-bottom: 32px;
     }
 
     .add-button {
@@ -130,7 +160,7 @@ body {
 
     .book-edit {
         display: flex;
-        width: clamp(300px, 40%, 500px);
+        width: clamp(300px, 50%, 600px);
         flex-direction: column;
         border-radius: 16px;
         background-color: #FDFAF4;
@@ -179,19 +209,30 @@ body {
     }
 
     .author {
-        font-size: 13px;
+        font-size: 14px;
         color: #6B5E4A;
-        font-style: italic;
+    }
+
+
+    .description{
+        margin-top: 24px;
+    }
+
+    .description-info {
+        font-size: 12px;
+        color: #6B5E4A;
+        line-height: 1.4;
+        text-align: justify;
     }
 
     .buttons {
-        margin-top: 20px;
+        
         display: flex;
         gap: 8px;
     }
 
     .edit-button,
-    .delete-button {
+    .delete-button, .welcome-button {
         font-family: 'DM Sans', sans-serif;
         font-size: 12px;
         font-weight: 500;
@@ -206,6 +247,12 @@ body {
     .edit-button {
         background-color: #1C1208;
         color: #F5F0E8;
+    }
+
+    .welcome-button {
+        background-color: #1C1208;
+        color: #F5F0E8;
+        font-size: 14px;
     }
 
     .delete-button {
@@ -242,5 +289,56 @@ body {
     .input:focus {
         border-color: #C17B3F;
         box-shadow: 0 0 0 3px rgba(193, 123, 63, 0.12);
+    }
+
+    .search-wrapper {
+        width: 100%;
+        max-width: 1100px;
+        margin-bottom: 32px;
+        position: relative;
+    }
+ 
+    .search-icon {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #9A8B72;
+        pointer-events: none;
+        font-size: 16px;
+    }
+ 
+    .search-input {
+        width: 100%;
+        border: 1.5px solid #D4C9B0;
+        border-radius: 12px;
+        padding: 12px 16px 12px 42px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        background-color: #FDFAF4;
+        color: #1C1208;
+        outline: none;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        box-sizing: border-box;
+    }
+ 
+    .search-input::placeholder {
+        color: #B0A48C;
+    }
+ 
+    .search-input:focus {
+        border-color: #C17B3F;
+        box-shadow: 0 0 0 3px rgba(193, 123, 63, 0.12);
+    }
+ 
+    .no-results {
+        display: none;
+        width: 100%;
+        max-width: 1100px;
+        text-align: center;
+        padding: 48px 0;
+        color: #9A8B72;
+        font-size: 15px;
+        font-style: italic;
     }
 }

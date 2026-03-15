@@ -1,7 +1,7 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
-<div class="index-div">
+<div class="modify-div">
     <div class="book-edit">
         <h1 class="index-heading">Edit Book</h1>
         <form id="bookForm" action="{{ route('books.update', $book->id) }}" method="POST">
@@ -12,6 +12,7 @@
             Genre: <input class="input" type="text" name="genre" value="{{ $book->genre }}"><br>
             Published Year: <input class="input" type="number" name="published_year"
                 value="{{ $book->published_year }}"><br>
+            Short Description: <textarea class="input" name="description">{{ $book->description }}</textarea><br>
             <div class="buttons">
 
                 <button class="edit-button" type="submit">Update</button>
